@@ -28,11 +28,16 @@ public class HelloController {
 
     @FXML
     private void handleAbout(ActionEvent event){
-        Stage newStage = new Stage();
-        Label aboutUs = new Label("nase info nevim presne");
-        StackPane newLayout = new StackPane(aboutUs);
-        Scene newScene = new Scene(newLayout, 300, 200);
-        newStage.setScene(newScene);
-        newStage.show();
+        Stage aboutStage = new Stage();
+        Label textAboutUs = new Label("nase info nevim presne");
+        StackPane Layout = new StackPane(textAboutUs);
+        Scene newScene = new Scene(Layout);
+        aboutStage.setMinWidth(300);
+        aboutStage.setMaxWidth(300);
+        aboutStage.setMinHeight(200);
+        aboutStage.setMaxHeight(200);
+
+        aboutStage.setScene(newScene);
+        aboutStage.show();
     }
 }
