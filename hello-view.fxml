@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mrdkapropepeho.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mrdkapropepeho.HelloController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -20,7 +21,7 @@
                   <MenuItem mnemonicParsing="false" text="Filter3" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="About">
+          <Menu mnemonicParsing="false" onAction="#handleAbout" text="About">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
@@ -37,11 +38,14 @@
       <VBox prefHeight="575.0" prefWidth="292.0" BorderPane.alignment="CENTER" />
    </center>
    <right>
-      <VBox prefHeight="575.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="244.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" text="Select Image File" />
+            <Button mnemonicParsing="false" text="Select Image File" onAction="#handleOpenButton"/>
             <Button mnemonicParsing="false" text="Edit Matrix" />
          </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
       </VBox>
    </right>
 </BorderPane>
