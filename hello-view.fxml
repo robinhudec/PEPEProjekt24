@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mrdkapropepeho.HelloController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleOpenButton" text="Open" />
+                <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Filters">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Filter1" />
+                  <MenuItem mnemonicParsing="false" text="Filter2" />
+                  <MenuItem mnemonicParsing="false" text="Filter3" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="About">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" onMenuValidation="#handleQuit" text="Exit">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <VBox prefHeight="575.0" prefWidth="292.0" BorderPane.alignment="CENTER" />
+   </center>
+   <right>
+      <VBox prefHeight="575.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="Select Image File" />
+            <Button mnemonicParsing="false" text="Edit Matrix" />
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
