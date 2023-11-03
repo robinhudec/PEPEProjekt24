@@ -26,7 +26,7 @@ public class HelloController {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(stage);
         System.out.println(selectedFile);
-        Image image = new Image(getClass().getResourceAsStream("/image.jpeg"));
+        Image image = new Image(selectedFile.toURI().toString());
         imageView.setImage(image);
     }
     @FXML
