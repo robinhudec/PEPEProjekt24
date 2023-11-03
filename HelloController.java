@@ -2,6 +2,7 @@ package com.example.mrdkapropepeho;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -9,6 +10,8 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import javafx.stage.Stage;
 import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class HelloController {
     public Stage stage;
@@ -16,10 +19,15 @@ public class HelloController {
     private Label welcomeText;
 
     @FXML
+    private ImageView imageView;
+
+    @FXML
     private void handleOpenButton(ActionEvent event){
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(stage);
         System.out.println(selectedFile);
+        Image image = new Image(getClass().getResourceAsStream("/image.jpeg"));
+        imageView.setImage(image);
     }
     @FXML
     private void handleQuit(ActionEvent event){
@@ -40,4 +48,5 @@ public class HelloController {
         aboutStage.setScene(newScene);
         aboutStage.show();
     }
+
 }

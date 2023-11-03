@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mrdkapropepeho.HelloController">
@@ -35,12 +36,15 @@
       </MenuBar>
    </top>
    <center>
-      <VBox prefHeight="575.0" prefWidth="292.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="575.0" prefWidth="292.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView id="imageView" fx:id="imageView" fitHeight="221.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true" />
+         </children></VBox>
    </center>
    <right>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="244.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" text="Select Image File" onAction="#handleOpenButton"/>
+            <Button mnemonicParsing="false" onAction="#handleOpenButton" text="Select Image File" />
             <Button mnemonicParsing="false" text="Edit Matrix" />
          </children>
          <padding>
