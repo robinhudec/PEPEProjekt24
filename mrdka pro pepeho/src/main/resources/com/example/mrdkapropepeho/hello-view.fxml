@@ -36,16 +36,31 @@
       </MenuBar>
    </top>
    <center>
-      <VBox prefHeight="575.0" prefWidth="292.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="575.0" prefWidth="257.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView id="imageView" fx:id="imageView" fitHeight="221.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="imageView" fx:id="imageView" fitHeight="500" fitWidth="500" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
          </children></VBox>
    </center>
    <right>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="244.0" spacing="10.0">
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="147.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#handleOpenButton" text="Select Image File" />
             <Button mnemonicParsing="false" text="Edit Matrix" />
+            <GridPane>
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <VBox.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </VBox.margin>
+            </GridPane>
          </children>
          <padding>
             <Insets top="10.0" />
