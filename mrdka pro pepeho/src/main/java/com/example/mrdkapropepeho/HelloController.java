@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -11,6 +12,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.FileChooser;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -55,14 +57,18 @@ public class HelloController implements Initializable {
         aboutStage.show();
     }
 
+
     @FXML
-    private void handleEditMatrix(ActionEvent event){
+    private void handleEditMatrix(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloController.class.getResource("matrixEdit.fxml"));
+        Scene sceneMatrix = new Scene(fxmlLoader.load());
         Stage editMatrix = new Stage();
+
         editMatrix.setMinWidth(300);
         editMatrix.setMaxWidth(300);
         editMatrix.setMinHeight(200);
         editMatrix.setMaxHeight(200);
-
+        editMatrix.setScene(sceneMatrix);
         editMatrix.show();
     }
     @FXML
