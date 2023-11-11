@@ -38,7 +38,6 @@
    <center>
       <VBox prefHeight="575.0" prefWidth="257.0" BorderPane.alignment="CENTER">
          <children>
-            <Spinner fx:id="numberSpinner" editable="true" />
             <ImageView id="imageView" fx:id="imageView" fitHeight="500" fitWidth="500" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
          </children></VBox>
    </center>

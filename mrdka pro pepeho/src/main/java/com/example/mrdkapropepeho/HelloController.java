@@ -71,15 +71,9 @@ public class HelloController implements Initializable {
         editMatrix.setScene(sceneMatrix);
         editMatrix.show();
     }
-    @FXML
-    public Spinner<Integer> numberSpinner;
-
-    int currentValue;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(-100, 100);
-        valueFactory.setValue(0);
-        numberSpinner.setValueFactory(valueFactory);
+
         }
 }
