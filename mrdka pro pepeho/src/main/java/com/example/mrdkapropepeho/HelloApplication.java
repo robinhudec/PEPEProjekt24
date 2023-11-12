@@ -13,7 +13,6 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setMinWidth(800);
         stage.setMinHeight(500);
-        stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }

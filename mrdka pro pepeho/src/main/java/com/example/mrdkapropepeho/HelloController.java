@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -24,9 +25,6 @@ import javafx.scene.image.ImageView;
 public class HelloController implements Initializable {
     public Stage stage;
     @FXML
-    private Label welcomeText;
-
-    @FXML
     private ImageView imageView;
 
     @FXML
@@ -37,6 +35,7 @@ public class HelloController implements Initializable {
         Image image = new Image(selectedFile.toURI().toString());
         imageView.setImage(image);
     }
+
     @FXML
     private void handleQuit(ActionEvent event){
         Platform.exit();
