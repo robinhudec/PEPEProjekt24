@@ -9,7 +9,7 @@
       <GridPane layoutX="14.0" layoutY="14.0" prefHeight="396.0" prefWidth="577.0" fx:id="spinnerPane">
       </GridPane>
       <CheckBox layoutX="23.0" layoutY="431.0" mnemonicParsing="false" text="Normalisation /  Coeffitient" onAction="#handleNormalisation" fx:id="checkBox"/>
-      <Button layoutX="14.0" layoutY="471.0" mnemonicParsing="false" text="Save Matrix" />
+      <Button layoutX="14.0" layoutY="471.0" mnemonicParsing="false" text="Save Matrix" onAction="#handleSaveMatrix"/>
       <Button layoutX="106.0" layoutY="472.0" mnemonicParsing="false" text="Load Matrix" />
       <Button layoutX="202.0" layoutY="472.0" mnemonicParsing="false" text="Clear Matrix" />
       <Button layoutX="23.0" layoutY="515.0" mnemonicParsing="false" text="Ok" />
