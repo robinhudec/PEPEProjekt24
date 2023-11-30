@@ -7,10 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
@@ -70,9 +68,18 @@ public class HelloController implements Initializable {
         editMatrix.setScene(sceneMatrix);
         editMatrix.show();
     }
+    @FXML
+    private TextField cell00;
+    private void setCellColor(TextField textField, int value) {
+        Color color = Color.rgb(value, value, value); // Assuming grayscale, modify as needed
+        String style = String.format("-fx-background-color: rgba(%d, %d, %d, 1);", (int)(color.getRed() * 255), (int)(color.getGreen() * 255), (int)(color.getBlue() * 255));
+        textField.setStyle(style);
+        textField.setEditable(false);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+            setCellColor(cell00, 255);
 
         }
 }
