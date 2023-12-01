@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import java.io.File;
@@ -19,6 +21,15 @@ import javafx.stage.Stage;
 import javafx.scene.layout.StackPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import java.awt.image.BufferedImage;
+import java.awt.color.*;
+import java.lang.Object;
+import javafx.scene.paint.Paint;
+import javafx.scene.paint.Color;
+
+import static javafx.scene.paint.Color.color;
+
 
 public class HelloController implements Initializable {
     public Stage stage;
@@ -81,5 +92,32 @@ public class HelloController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
             setCellColor(cell00, 255);
 
+    }
+
+
+
+    public void generateImage() {
+        Image generatedImg = makeColoredImage();
+        //Image OGimage = imageView.getImage();
+        //Image img = convertToJavaFXImage(generatedImg);
+        System.out.println("Image generated");
+        imageView.setImage(generatedImg);
+    }
+
+    public Image makeColoredImage(){
+        //BufferedImage bImage = new BufferedImage(600, 600, BufferedImage.TYPE_3BYTE_BGR);
+
+        WritableImage writableImage = new WritableImage(600, 600);
+        PixelWriter pixelWriter = writableImage.getPixelWriter();
+
+        for (int x = 0; x < writableImage.getWidth(); x++){
+            for (int y = 0; y < writableImage.getHeight(); y++){
+                //bImage.setRGB(x, y, (new java.awt.Color(x%255, y%255, (x+y)%255)).getRGB());
+
+                pixelWriter.setArgb(x, y, (new java.awt.Color(x%255, y%255, (x+y)%255)).getRGB());
+            }
         }
+        return writableImage;
+    }
+
 }
