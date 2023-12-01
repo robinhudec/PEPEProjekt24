@@ -61,6 +61,15 @@
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </VBox.margin>
             </GridPane>
+             <TextField fx:id="textField" prefHeight="173.0" prefWidth="147.0" />
+             <Button mnemonicParsing="false" onAction="#handleGenerateButton" prefHeight="19.0" prefWidth="101.0" text="Generate image" />
+             <Button mnemonicParsing="false" onAction="#handleRestoreButton" text="Restore image" disable="true" fx:id="restoreButton"/>
+            <RadioButton mnemonicParsing="false" text="Original" textAlignment="JUSTIFY">
+               <toggleGroup>
+                  <ToggleGroup fx:id="tgImageState" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" selected="true" text="Modified" toggleGroup="$tgImageState" />
          </children>
          <padding>
             <Insets top="10.0" />

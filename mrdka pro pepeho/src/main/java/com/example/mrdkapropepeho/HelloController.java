@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
@@ -71,6 +68,18 @@ public class HelloController implements Initializable {
         editMatrix.show();
     }
 
+    @FXML
+    private Button restoreButton;
+    public ToggleGroup tgImageState;
+    @FXML
+    private void handleGenerateButton(ActionEvent event){
+        restoreButton.setDisable(false);
+    }
+
+    @FXML
+    private void handleRestoreButton(ActionEvent event){
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

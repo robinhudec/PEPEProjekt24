@@ -9,8 +9,5 @@
         <module name="mrdkapropepeho" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="mrdkapropepeho" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
