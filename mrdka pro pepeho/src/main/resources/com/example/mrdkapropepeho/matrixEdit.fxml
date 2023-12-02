@@ -10,8 +10,8 @@
       </GridPane>
       <CheckBox layoutX="23.0" layoutY="431.0" mnemonicParsing="false" text="Normalisation /  Coeffitient" onAction="#handleNormalisation" fx:id="checkBox"/>
       <Button layoutX="14.0" layoutY="471.0" mnemonicParsing="false" text="Save Matrix" onAction="#handleSaveMatrix"/>
-      <Button layoutX="106.0" layoutY="472.0" mnemonicParsing="false" text="Load Matrix" />
-      <Button layoutX="202.0" layoutY="472.0" mnemonicParsing="false" text="Clear Matrix" />
+      <Button layoutX="106.0" layoutY="472.0" mnemonicParsing="false" text="Load Matrix" onAction="#handleLoadMatrix"/>
+      <Button layoutX="202.0" layoutY="472.0" mnemonicParsing="false" text="Clear Matrix" onAction="#handleClearMatrix"/>
       <Button layoutX="23.0" layoutY="515.0" mnemonicParsing="false" text="Ok" />
       <Button layoutX="73.0" layoutY="515.0" mnemonicParsing="false" text="Cancel" />
       <Label layoutX="508.0" layoutY="431.0" text="Matrix sum: 0" />

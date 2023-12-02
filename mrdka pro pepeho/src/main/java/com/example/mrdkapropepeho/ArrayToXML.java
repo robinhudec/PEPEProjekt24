@@ -1,6 +1,14 @@
 package com.example.mrdkapropepeho;
 import javafx.scene.control.Spinner;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.scene.control.SpinnerValueFactory;
+import org.jdom2.*;
+import org.jdom2.input.SAXBuilder;
 //Intellij mi tu rve nejaky errory, ale funkcnost je 100%, takze je vklidu ignorujte
 public class ArrayToXML <T>{
     //Ze vstupu Spinner[][] spinnerArray udela a vrati int[][] valueMatrix s hodnotami spinneru v spinnerArray
@@ -12,6 +20,16 @@ public class ArrayToXML <T>{
             }
         }
         return valueMatrix;
+    }
+
+    //vstup content je int[][] array s obsahem, ktery se nahraje do valueFactory ve Spinner[][] arrayi
+    public void setSpinners(int[][] content,Spinner<Integer>[][] spinnerArray){
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                SpinnerValueFactory<Integer> valueFactory = spinnerArray[col][row].getValueFactory();
+                valueFactory.setValue(content[col][row]);
+            }
+        }
     }
 
     //Jako vstup ma genericky 2D array, ktery zapise do xml file, zatim nefunkcni filechooser
@@ -30,4 +48,29 @@ public class ArrayToXML <T>{
         xmlContent.append("</Array>");
         return xmlContent;
     }
+
+    //jako vstup ma cestu ke xml souboru a vrati jeho precteny obsah ve forme int[][]
+    public int[][] readFxmlToMatrix(String filePath) throws IOException, JDOMException {
+        int[][] readData = new int[9][9];
+
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document document = saxBuilder.build(new File(filePath));
+        Element rootElement = document.getRootElement();
+
+        int RowCount = 0;
+        int ColCount = 0;
+        for (Element row : rootElement.getChildren("Row")) {
+            List<Element> valueElement = row.getChildren("Value");
+            for(Element value : valueElement){
+                readData[ColCount][RowCount] = Integer.parseInt(value.getValue());
+                RowCount ++;
+            }
+            ColCount ++;
+            RowCount = 0;
+        }
+        return readData;
+
+
+    }
+
 }

@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.jdom2.*;
+import org.jdom2.input.SAXBuilder;
 
 public class editMatrixController implements Initializable {
     @FXML
@@ -49,7 +51,6 @@ public class editMatrixController implements Initializable {
                 spinnerArray[col][row] = spinner;
             }
         }
-        System.out.println(spinnerArray[8][8]);
     }
 
     @FXML
@@ -79,12 +80,9 @@ public class editMatrixController implements Initializable {
         ArrayToXML converter = new ArrayToXML();
         //Do promenne content da matrix v xml formatu prevedeny v ArrayToXML
         String content = converter.writeArrayToXml(spinnerArray).toString();  //do promenne content ulozi vraceny string ve formatu xml ze tridy ArrayToXml
-        System.out.println(content);
         //Ukaze filechooser, do selected file ulozi cestu k vybranemu souboru i s jeho nazvem
         Window stage = spinnerPane.getScene().getWindow();
         File selectedFile = fileChooser.showSaveDialog(stage);
-        System.out.println(selectedFile);
-
         //moc nechapu na co exception, ale intellij bez nej rve, zapise do vybraneho souboru content a zavre ho
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(selectedFile));
@@ -95,4 +93,29 @@ public class editMatrixController implements Initializable {
         }
 
     }
+
+    @FXML
+    private void handleLoadMatrix() throws IOException, JDOMException {
+        FileChooser fileChooser = new FileChooser();
+        Window stage = spinnerPane.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        ArrayToXML converter = new ArrayToXML();
+        int[][] content = converter.readFxmlToMatrix(selectedFile.getPath());
+        converter.setSpinners(content, spinnerArray);
+    }
+
+    @FXML
+    private void handleClearMatrix(){
+        int[][] content = new int[9][9];
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                content[col][row] = 0;
+            }
+        }
+        ArrayToXML converter = new ArrayToXML();
+
+        converter.setSpinners(content, spinnerArray);
+    }
 }
+

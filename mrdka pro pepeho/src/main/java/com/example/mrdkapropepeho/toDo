@@ -1,4 +1,4 @@
 Dodelat formalni stranku xml StringBuilderu xmlContent v ArrayToXML
-Filechooser extension filter v editMatrixController > handleSaveMatrix
+Filechooser extension filter v editMatrixController > handleSaveMatrix a handle load matrix
 
-
+udelat matrix tvorbu, zapis, a load responzivni na pocet prvku (optional)
