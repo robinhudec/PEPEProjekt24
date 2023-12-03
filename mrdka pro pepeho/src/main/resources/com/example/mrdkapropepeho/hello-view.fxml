@@ -62,7 +62,7 @@
                </VBox.margin>
                <children>
                   <TextField />
-                  <TextField fx:id="cell00"  GridPane.columnIndex="1" />
+                  <TextField fx:id="cell00" GridPane.columnIndex="1" />
                   <TextField GridPane.columnIndex="2" />
                   <TextField GridPane.rowIndex="1" />
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -72,6 +72,9 @@
                   <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
             </GridPane>
+            <Button mnemonicParsing="false" text="Apply Matrix Filter" />
+            <TextArea prefHeight="129.0" prefWidth="147.0" />
+            <Button mnemonicParsing="false" text="Button" />
          </children>
          <padding>
             <Insets top="10.0" />

@@ -29,8 +29,10 @@ public class HelloController implements Initializable {
     private void handleOpenButton(ActionEvent event){
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(stage);
-        Image image = new Image(selectedFile.toURI().toString());
-        imageView.setImage(image);
+        if(selectedFile != null) {
+            Image image = new Image(selectedFile.toURI().toString());
+            imageView.setImage(image);
+        }
     }
 
     @FXML
