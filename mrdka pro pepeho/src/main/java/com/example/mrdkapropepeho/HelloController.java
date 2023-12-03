@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
@@ -28,9 +29,10 @@ public class HelloController implements Initializable {
     private void handleOpenButton(ActionEvent event){
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(stage);
-        System.out.println(selectedFile);
-        Image image = new Image(selectedFile.toURI().toString());
-        imageView.setImage(image);
+        if(selectedFile != null) {
+            Image image = new Image(selectedFile.toURI().toString());
+            imageView.setImage(image);
+        }
     }
 
     @FXML
@@ -67,6 +69,14 @@ public class HelloController implements Initializable {
         editMatrix.setScene(sceneMatrix);
         editMatrix.show();
     }
+    @FXML
+    private TextField cell00;
+    private void setCellColor(TextField textField, int value) {
+        Color color = Color.rgb(value, value, value); // Assuming grayscale, modify as needed
+        String style = String.format("-fx-background-color: rgba(%d, %d, %d, 1);", (int)(color.getRed() * 255), (int)(color.getGreen() * 255), (int)(color.getBlue() * 255));
+        textField.setStyle(style);
+        textField.setEditable(false);
+    }
 
     @FXML
     private Button restoreButton;
@@ -82,6 +92,7 @@ public class HelloController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+            setCellColor(cell00, 255);
 
         }
 }

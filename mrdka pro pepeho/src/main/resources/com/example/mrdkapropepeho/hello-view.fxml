@@ -60,6 +60,17 @@
                <VBox.margin>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </VBox.margin>
+               <children>
+                  <TextField />
+                  <TextField fx:id="cell00" GridPane.columnIndex="1" />
+                  <TextField GridPane.columnIndex="2" />
+                  <TextField GridPane.rowIndex="1" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField GridPane.rowIndex="2" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               </children>
             </GridPane>
              <TextField fx:id="textField" prefHeight="173.0" prefWidth="147.0" />
              <Button mnemonicParsing="false" onAction="#handleGenerateButton" prefHeight="19.0" prefWidth="101.0" text="Generate image" />
