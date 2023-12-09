@@ -32,9 +32,9 @@ public class ArrayToXML <T>{
         }
     }
 
-    //Jako vstup ma genericky 2D array, ktery zapise do xml file, zatim nefunkcni filechooser
-    //Je to sice genericka funkce, ale fr bych tam daval jen Spinner<Integer>[][]
-    public StringBuilder writeArrayToXml(T[][] array){
+    //Jako vstup ma genericky 2D array, ktery zapise do xml file
+    //Je to sice genericka funkce, ale fr ong bych tam daval jen Spinner<Integer>[][]
+    public StringBuilder writeArrayToXml(Spinner[][] array){
         int[][] content = convertSpinnerArrayToValueArray((Spinner<Integer>[][]) array);
         StringBuilder xmlContent = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         xmlContent.append("<Array>\n");
@@ -49,6 +49,19 @@ public class ArrayToXML <T>{
         return xmlContent;
     }
 
+    public StringBuilder writeArrayToXml(int[][] content){
+        StringBuilder xmlContent = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+        xmlContent.append("<Array>\n");
+        for(int row = 0; row < 9; row++) {
+            xmlContent.append("  <Row>\n");
+            for (int col = 0; col < 9; col++) {
+                xmlContent.append("    <Value>").append(content[row][col]).append("</Value>\n");
+            }
+            xmlContent.append("  </Row>\n");
+        }
+        xmlContent.append("</Array>");
+        return xmlContent;
+    }
     //jako vstup ma cestu ke xml souboru a vrati jeho precteny obsah ve forme int[][]
     public int[][] readFxmlToMatrix(String filePath) throws IOException, JDOMException {
         int[][] readData = new int[9][9];

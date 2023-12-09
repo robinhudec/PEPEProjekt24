@@ -7,33 +7,33 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mrdkapropepeho.HelloController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                <MenuItem mnemonicParsing="false" onAction="#handleOpenButton" text="Open" />
-                <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Filters">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Filter1" />
-                  <MenuItem mnemonicParsing="false" text="Filter2" />
-                  <MenuItem mnemonicParsing="false" text="Filter3" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" onAction="#handleAbout" text="About">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" onMenuValidation="#handleQuit" text="Exit">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
-            </Menu>
-        </menus>
-      </MenuBar>
+       <MenuBar BorderPane.alignment="CENTER">
+           <menus>
+               <Menu mnemonicParsing="false" text="File">
+                   <items>
+                       <MenuItem mnemonicParsing="false" onAction="#handleOpenButton" text="Open" />
+                       <MenuItem mnemonicParsing="false" text="Close" />
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Filters">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Filter1" />
+                       <MenuItem mnemonicParsing="false" text="Filter2" />
+                       <MenuItem mnemonicParsing="false" text="Filter3" />
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" onAction="#handleAbout" text="About">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="About" />
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" onAction="#handleQuit" text="Quit">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Quit" onAction="#handleQuit"/>
+                   </items>
+               </Menu>
+           </menus>
+       </MenuBar>
    </top>
    <center>
       <VBox prefHeight="575.0" prefWidth="257.0" BorderPane.alignment="CENTER">
@@ -75,12 +75,12 @@
              <TextField fx:id="textField" prefHeight="173.0" prefWidth="147.0" />
              <Button mnemonicParsing="false" onAction="#handleGenerateButton" prefHeight="19.0" prefWidth="101.0" text="Generate image" />
              <Button mnemonicParsing="false" onAction="#handleRestoreButton" text="Restore image" disable="true" fx:id="restoreButton"/>
-            <RadioButton mnemonicParsing="false" text="Original" textAlignment="JUSTIFY">
+            <RadioButton mnemonicParsing="false" text="Original" textAlignment="JUSTIFY" disable="true" fx:id="originalRadio" onAction="#handleOriginalImageButton">
                <toggleGroup>
                   <ToggleGroup fx:id="tgImageState" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" selected="true" text="Modified" toggleGroup="$tgImageState" />
+            <RadioButton mnemonicParsing="false" selected="true" text="Modified" toggleGroup="$tgImageState" disable="true" fx:id="modifiedRadio" onAction="#handleModifiedImageButton"/>
          </children>
          <padding>
             <Insets top="10.0" />

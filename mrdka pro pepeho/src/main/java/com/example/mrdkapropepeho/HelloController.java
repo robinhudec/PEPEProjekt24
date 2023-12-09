@@ -1,5 +1,6 @@
 package com.example.mrdkapropepeho;
 
+import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -26,22 +27,25 @@ public class HelloController implements Initializable {
     private ImageView imageView;
 
     @FXML
-    private void handleOpenButton(ActionEvent event){
+    private void handleOpenButton(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(stage);
-        if(selectedFile != null) {
+        if (selectedFile != null) {
             Image image = new Image(selectedFile.toURI().toString());
             imageView.setImage(image);
         }
     }
 
     @FXML
-    private void handleQuit(ActionEvent event){
-        Platform.exit();
+    private Menu quitButton;
+
+    @FXML
+    private void handleQuit(ActionEvent event) {
+        HelloApplication.close();
     }
 
     @FXML
-    private void handleAbout(ActionEvent event){
+    private void handleAbout(ActionEvent event) {
         Stage aboutStage = new Stage();
         Label textAboutUs = new Label("nase info nevim presne");
         StackPane Layout = new StackPane(textAboutUs);
@@ -69,11 +73,13 @@ public class HelloController implements Initializable {
         editMatrix.setScene(sceneMatrix);
         editMatrix.show();
     }
+
     @FXML
     private TextField cell00;
+
     private void setCellColor(TextField textField, int value) {
         Color color = Color.rgb(value, value, value); // Assuming grayscale, modify as needed
-        String style = String.format("-fx-background-color: rgba(%d, %d, %d, 1);", (int)(color.getRed() * 255), (int)(color.getGreen() * 255), (int)(color.getBlue() * 255));
+        String style = String.format("-fx-background-color: rgba(%d, %d, %d, 1);", (int) (color.getRed() * 255), (int) (color.getGreen() * 255), (int) (color.getBlue() * 255));
         textField.setStyle(style);
         textField.setEditable(false);
     }
@@ -81,18 +87,38 @@ public class HelloController implements Initializable {
     @FXML
     private Button restoreButton;
     public ToggleGroup tgImageState;
+    public RadioButton modifiedRadio;
+    public RadioButton originalRadio;
+
     @FXML
-    private void handleGenerateButton(ActionEvent event){
+    private void handleGenerateButton(ActionEvent event) {
         restoreButton.setDisable(false);
+        modifiedRadio.setDisable(false);
+        originalRadio.setDisable(false);
+        System.out.println("Generate");
     }
 
     @FXML
-    private void handleRestoreButton(ActionEvent event){
-
+    private void handleRestoreButton(ActionEvent event) {
+        System.out.println("Restored");
     }
+
+    @FXML
+    private void handleOriginalImageButton(ActionEvent event) {
+        System.out.println("Original");
+    }
+
+    @FXML
+    private void handleModifiedImageButton(ActionEvent event){
+        System.out.println("Modified");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             setCellColor(cell00, 255);
+            modifiedRadio.setToggleGroup(tgImageState);
+            originalRadio.setToggleGroup(tgImageState);
+            tgImageState.selectToggle(originalRadio);
+    }
 
-        }
 }

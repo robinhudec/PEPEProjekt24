@@ -2,11 +2,13 @@ package com.example.mrdkapropepeho;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.BufferedWriter;
@@ -26,6 +28,7 @@ public class editMatrixController implements Initializable {
     @FXML
     private GridPane spinnerPane;
     Spinner<Integer>[][] spinnerArray = new Spinner[9][9];
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ///provede akce pro kazde policko v 9*9 gridu
@@ -51,12 +54,20 @@ public class editMatrixController implements Initializable {
                 spinnerArray[col][row] = spinner;
             }
         }
+        File path = new File(".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.xml");
+        try {
+            handleLoadMatrix(path);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (JDOMException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
-    ///zavola se vzdy kdyz se zmeni hodnota v kteremkoliv spinneru, vola static funkci ktera vypise obsah matice
+    ///zavola se vzdy kdyz se zmeni hodnota v kteremkoliv spinneru
     //zatim zadna funkcnost
-    private void handleValueChanged(){
+    private void handleValueChanged() {
 
     }
 
@@ -65,17 +76,17 @@ public class editMatrixController implements Initializable {
 
     ///zavola se kdyz se zmeni checkbox normalisation/coeffitient zatim zadna funkcnost
     @FXML
-    private void handleNormalisation(){
-        if(checkBox.isSelected()){
+    private void handleNormalisation() {
+        if (checkBox.isSelected()) {
             System.out.println("Normalisation");
-        }
-        else {
+        } else {
             System.out.println("Coefittient");
         }
     }
 
+    // ulozi hodnoty spinneru do souboru za pomoci filechooseru
     @FXML
-    private void handleSaveMatrix(){  //Spusti se pri stisknuti save tlacitka v editMatrix okne, vysledkem je ulozeny soubor
+    private void handleSaveMatrix() {  //Spusti se pri stisknuti save tlacitka v editMatrix okne, vysledkem je ulozeny soubor
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XML Files", "*.xml"),
@@ -100,6 +111,7 @@ public class editMatrixController implements Initializable {
         }
     }
 
+    //Z ulozeneho xml souboru nacte hodnoty do spinneru filechooserem
     @FXML
     private void handleLoadMatrix() throws IOException, JDOMException {
         FileChooser fileChooser = new FileChooser();
@@ -115,9 +127,16 @@ public class editMatrixController implements Initializable {
         }
     }
 
+    //Z ulozeneho xml souboru nacte hodnoty do spinneru
+    private void handleLoadMatrix(File path) throws IOException, JDOMException {
+        ArrayToXML converter = new ArrayToXML();
+        int[][] content = converter.readFxmlToMatrix(path.getPath());
+        converter.setSpinners(content, spinnerArray);
+        }
+
     //vsechny hodnoty spinneru zmeni na nulu volanim ArrayToXML.setspinners()
     @FXML
-    private void handleClearMatrix(){
+    private void handleClearMatrix() {
         int[][] content = new int[9][9];
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -128,5 +147,32 @@ public class editMatrixController implements Initializable {
 
         converter.setSpinners(content, spinnerArray);
     }
-}
 
+    @FXML
+    private Button okButton;
+
+    //Ulozi nastavenou matici do souboru temp.xml, aby se z něj daly dělat výpočty a taky aby se pri znovuotevrení okna
+    //obnovil obsah matice
+    @FXML
+    private void handleOkButton() {
+        File file = new File(".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.xml");
+        ArrayToXML converter = new ArrayToXML();
+        String content = converter.writeArrayToXml(spinnerArray).toString();  //do promenne content ulozi vraceny string ve formatu xml ze tridy ArrayToXml
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(content);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        closeScene();
+    }
+
+    //uzavre okno editMatrix
+    @FXML
+    private void closeScene() {
+        Stage stage = (Stage) okButton.getScene().getWindow();
+        stage.close();
+    }
+
+}
