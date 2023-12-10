@@ -13,13 +13,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.StandardOpenOption;
 import java.util.ResourceBundle;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
 import org.jdom2.*;
-import org.jdom2.input.SAXBuilder;
 
 public class editMatrixController implements Initializable {
     @FXML
@@ -43,9 +38,7 @@ public class editMatrixController implements Initializable {
                 spinnerPane.add(spinner, col, row);
 
                 ///na spinner prida listener ktery odpovida na zmeny hodnoty a zavola handleValuechanged
-                spinner.valueProperty().addListener(observable -> {
-                    handleValueChanged();
-                });
+                spinner.valueProperty().addListener(observable -> handleValueChanged());
 
                 ///ulozi spinner do spinnerArray
                 spinnerArray[col][row] = spinner;
@@ -71,7 +64,7 @@ public class editMatrixController implements Initializable {
     @FXML
     private CheckBox checkBox;
 
-    ///zavola se kdyz se zmeni checkbox normalisation/coeffitient zatim zadna funkcnost
+    ///zavola se kdyz se zmeni checkbox normalisation/coeffitient
     @FXML
     private void handleNormalisation() {
         if (checkBox.isSelected()) {
@@ -151,7 +144,7 @@ public class editMatrixController implements Initializable {
     //Ulozi nastavenou matici do souboru temp.xml, aby se z něj daly dělat výpočty a taky aby se pri znovuotevrení okna
     //obnovil obsah matice
     @FXML
-    private void handleOkButton() throws IOException, JDOMException {
+    private void handleOkButton() {
         File file = new File(".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.xml");
         ArrayToXML converter = new ArrayToXML();
         String content = converter.writeArrayToXml(spinnerArray).toString();  //do promenne content ulozi vraceny string ve formatu xml ze tridy ArrayToXml

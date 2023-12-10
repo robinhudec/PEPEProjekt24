@@ -3,14 +3,13 @@ import javafx.scene.control.Spinner;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.SpinnerValueFactory;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
-//Intellij mi tu rve nejaky errory, ale funkcnost je 100%, takze je vklidu ignorujte
-public class ArrayToXML <T>{
+
+public class ArrayToXML {
     //Ze vstupu Spinner[][] spinnerArray udela a vrati int[][] valueMatrix s hodnotami spinneru v spinnerArray
     public int[][] convertSpinnerArrayToValueArray(Spinner<Integer>[][] spinnerArray){
         int [][] valueMatrix = new int[9][9];
@@ -35,7 +34,7 @@ public class ArrayToXML <T>{
     //Jako vstup ma genericky 2D array, ktery zapise do xml file
     //Je to sice genericka funkce, ale fr ong bych tam daval jen Spinner<Integer>[][]
     public StringBuilder writeArrayToXml(Spinner[][] array){
-        int[][] content = convertSpinnerArrayToValueArray((Spinner<Integer>[][]) array);
+        int[][] content = convertSpinnerArrayToValueArray(array);
         StringBuilder xmlContent = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         xmlContent.append("<Array>\n");
         for(int row = 0; row < 9; row++) {
@@ -49,6 +48,7 @@ public class ArrayToXML <T>{
         return xmlContent;
     }
 
+    //ze zadane matice hodnot vrati string v korektnim xml formatu
     public StringBuilder writeArrayToXml(int[][] content){
         StringBuilder xmlContent = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         xmlContent.append("<Array>\n");

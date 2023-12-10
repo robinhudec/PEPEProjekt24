@@ -1,6 +1,5 @@
 package com.example.mrdkapropepeho;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,28 +23,27 @@ public class HelloController implements Initializable {
     @FXML
     private ImageView imageView;
 
+    //za pouziti filechooseru nacte vybrany obrazek do imageview a vyipse text do outputTextField
     @FXML
-    private void handleOpenButton(ActionEvent event) {
+    private void handleOpenButton() {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
             Image image = new Image(selectedFile.toURI().toString());
             imageView.setImage(image);
         }
+        assert selectedFile != null;
         outputText += "\nLoaded image " + selectedFile.getName();
         outputTextField.setText(outputText);
     }
 
     @FXML
-    private Menu quitButton;
-
-    @FXML
-    private void handleQuit(ActionEvent event) {
+    private void handleQuit() {
         HelloApplication.close();
     }
 
     @FXML
-    private void handleAbout(ActionEvent event) {
+    private void handleAbout() {
         Stage aboutStage = new Stage();
         Label textAboutUs = new Label("nase info nevim presne");
         StackPane Layout = new StackPane(textAboutUs);
@@ -61,7 +59,7 @@ public class HelloController implements Initializable {
 
 
     @FXML
-    private void handleEditMatrix(ActionEvent event) throws IOException {
+    private void handleEditMatrix() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloController.class.getResource("matrixEdit.fxml"));
         Scene sceneMatrix = new Scene(fxmlLoader.load());
         Stage editMatrix = new Stage();
@@ -81,7 +79,7 @@ public class HelloController implements Initializable {
     public RadioButton originalRadio;
 
     @FXML
-    private void handleGenerateButton(ActionEvent event) {
+    private void handleGenerateButton() {
         restoreButton.setDisable(false);
         modifiedRadio.setDisable(false);
         originalRadio.setDisable(false);
@@ -90,23 +88,23 @@ public class HelloController implements Initializable {
     }
 
     @FXML
-    private void handleRestoreButton(ActionEvent event) {
+    private void handleRestoreButton() {
         outputText += "\nOriginal image restored";
         outputTextField.setText(outputText);
     }
 
     @FXML
-    private void handleApplyMatrixButton(ActionEvent event){
+    private void handleApplyMatrixButton(){
         outputText += "\nX filter applied";
         outputTextField.setText(outputText);
     }
 
     @FXML
-    private void handleOriginalImageButton(ActionEvent event) {
+    private void handleOriginalImageButton() {
     }
 
     @FXML
-    private void handleModifiedImageButton(ActionEvent event){
+    private void handleModifiedImageButton(){
         System.out.println("Modified");
     }
 
@@ -114,6 +112,7 @@ public class HelloController implements Initializable {
     @FXML
     public GridPane matrixVisualGrid;
     public static TextField[][] textFieldVisualisation = new TextField[9][9];
+    //Vytvori tu prvni, prazdnou vizualizaci matice, spousti se v initialize
     public void createMatrixToGridPane() throws IOException, JDOMException {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -125,13 +124,15 @@ public class HelloController implements Initializable {
         }
     }
 
+    //meni barvy ve vizualizaci podle zadane matice hodnot, static aby se dala spustit v editmatrix controller, spousti
+    //se v editMatrixController pri stisku ok
     public static void changeTextFieldColor(int[][] valueMatrix) {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 textFieldVisualisation[row][col].setStyle("-fx-background-color: rgb(" + (14*valueMatrix[col][row] +126) + ", 0, 0);");
             }
         }
-    };
+    }
 
     @FXML
     private TextArea outputTextField;
