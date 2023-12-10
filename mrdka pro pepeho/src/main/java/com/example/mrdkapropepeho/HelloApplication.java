@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setMinWidth(800);
-        stage.setMinHeight(500);
+        stage.setMinHeight(600);
         stage.setScene(scene);
         stage.show();
         clearTempXML();

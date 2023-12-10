@@ -2,10 +2,7 @@ package com.example.mrdkapropepeho;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -154,7 +151,7 @@ public class editMatrixController implements Initializable {
     //Ulozi nastavenou matici do souboru temp.xml, aby se z něj daly dělat výpočty a taky aby se pri znovuotevrení okna
     //obnovil obsah matice
     @FXML
-    private void handleOkButton() {
+    private void handleOkButton() throws IOException, JDOMException {
         File file = new File(".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.xml");
         ArrayToXML converter = new ArrayToXML();
         String content = converter.writeArrayToXml(spinnerArray).toString();  //do promenne content ulozi vraceny string ve formatu xml ze tridy ArrayToXml
@@ -165,7 +162,10 @@ public class editMatrixController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        int[][] values = converter.convertSpinnerArrayToValueArray(spinnerArray);
+        HelloController.changeTextFieldColor(values);
         closeScene();
+
     }
 
     //uzavre okno editMatrix
@@ -176,3 +176,4 @@ public class editMatrixController implements Initializable {
     }
 
 }
+//                textField.setStyle("-fx-background-color: rgb(" + (14*valueMatrix[row][col] +126) + ", 0, 0);");

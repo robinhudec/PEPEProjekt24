@@ -12,7 +12,7 @@ import org.jdom2.input.SAXBuilder;
 //Intellij mi tu rve nejaky errory, ale funkcnost je 100%, takze je vklidu ignorujte
 public class ArrayToXML <T>{
     //Ze vstupu Spinner[][] spinnerArray udela a vrati int[][] valueMatrix s hodnotami spinneru v spinnerArray
-    private int[][] convertSpinnerArrayToValueArray(Spinner<Integer>[][] spinnerArray){
+    public int[][] convertSpinnerArrayToValueArray(Spinner<Integer>[][] spinnerArray){
         int [][] valueMatrix = new int[9][9];
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
