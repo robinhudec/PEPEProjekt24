@@ -1,47 +1,49 @@
 package com.example.mrdkapropepeho;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import org.jdom2.JDOMException;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.stage.Stage;
-import javafx.scene.layout.StackPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class HelloController implements Initializable {
     public Stage stage;
     @FXML
     private ImageView imageView;
 
+    //za pouziti filechooseru nacte vybrany obrazek do imageview a vyipse text do outputTextField
     @FXML
-    private void handleOpenButton(ActionEvent event){
+    private void handleOpenButton() {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(stage);
-        if(selectedFile != null) {
+        if (selectedFile != null) {
             Image image = new Image(selectedFile.toURI().toString());
             imageView.setImage(image);
         }
+        assert selectedFile != null;
+        outputText += "\nLoaded image " + selectedFile.getName();
+        outputTextField.setText(outputText);
     }
 
     @FXML
-    private void handleQuit(ActionEvent event){
-        Platform.exit();
+    private void handleQuit() {
+        HelloApplication.close();
     }
 
     @FXML
-    private void handleAbout(ActionEvent event){
+    private void handleAbout() {
         Stage aboutStage = new Stage();
         Label textAboutUs = new Label("nase info nevim presne");
         StackPane Layout = new StackPane(textAboutUs);
@@ -57,7 +59,7 @@ public class HelloController implements Initializable {
 
 
     @FXML
-    private void handleEditMatrix(ActionEvent event) throws IOException {
+    private void handleEditMatrix() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloController.class.getResource("matrixEdit.fxml"));
         Scene sceneMatrix = new Scene(fxmlLoader.load());
         Stage editMatrix = new Stage();
@@ -69,30 +71,88 @@ public class HelloController implements Initializable {
         editMatrix.setScene(sceneMatrix);
         editMatrix.show();
     }
-    @FXML
-    private TextField cell00;
-    private void setCellColor(TextField textField, int value) {
-        Color color = Color.rgb(value, value, value); // Assuming grayscale, modify as needed
-        String style = String.format("-fx-background-color: rgba(%d, %d, %d, 1);", (int)(color.getRed() * 255), (int)(color.getGreen() * 255), (int)(color.getBlue() * 255));
-        textField.setStyle(style);
-        textField.setEditable(false);
-    }
 
     @FXML
     private Button restoreButton;
     public ToggleGroup tgImageState;
+    public RadioButton modifiedRadio;
+    public RadioButton originalRadio;
+
     @FXML
-    private void handleGenerateButton(ActionEvent event){
+    private void handleGenerateButton() {
         restoreButton.setDisable(false);
+        modifiedRadio.setDisable(false);
+        originalRadio.setDisable(false);
+        outputText += "\nNew image generated";
+        outputTextField.setText(outputText);
     }
 
     @FXML
-    private void handleRestoreButton(ActionEvent event){
-
+    private void handleRestoreButton() {
+        outputText += "\nOriginal image restored";
+        outputTextField.setText(outputText);
     }
+
+    @FXML
+    private void handleApplyMatrixButton(){
+        outputText += "\nX filter applied";
+        outputTextField.setText(outputText);
+    }
+
+    @FXML
+    private void handleOriginalImageButton() {
+    }
+
+    @FXML
+    private void handleModifiedImageButton(){
+        System.out.println("Modified");
+    }
+
+
+    @FXML
+    public GridPane matrixVisualGrid;
+    public static TextField[][] textFieldVisualisation = new TextField[9][9];
+    //Vytvori tu prvni, prazdnou vizualizaci matice, spousti se v initialize
+    public void createMatrixToGridPane() throws IOException, JDOMException {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                TextField textField = new TextField();
+                textFieldVisualisation[row][col] = textField;
+                textField.setStyle("-fx-background-color: rgb( 126, 0, 0);");
+                matrixVisualGrid.add(textField, col, row);
+            }
+        }
+    }
+
+    //meni barvy ve vizualizaci podle zadane matice hodnot, static aby se dala spustit v editmatrix controller, spousti
+    //se v editMatrixController pri stisku ok
+    public static void changeTextFieldColor(int[][] valueMatrix) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                textFieldVisualisation[row][col].setStyle("-fx-background-color: rgb(" + (14*valueMatrix[col][row] +126) + ", 0, 0);");
+            }
+        }
+    }
+
+    @FXML
+    private TextArea outputTextField;
+    String outputText;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-            setCellColor(cell00, 255);
-
+            modifiedRadio.setToggleGroup(tgImageState);
+            originalRadio.setToggleGroup(tgImageState);
+            tgImageState.selectToggle(originalRadio);
+        try {
+            this.createMatrixToGridPane();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (JDOMException e) {
+            throw new RuntimeException(e);
         }
+
+        outputText = "";
+    }
+
+
 }
