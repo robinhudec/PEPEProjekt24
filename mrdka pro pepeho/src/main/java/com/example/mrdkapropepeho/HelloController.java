@@ -154,5 +154,27 @@ public class HelloController implements Initializable {
         outputText = "";
     }
 
+    public void generateImage() {
+        Image generatedImg = makeColoredImage();
+        //Image OGimage = imageView.getImage();
+        //Image img = convertToJavaFXImage(generatedImg);
+        System.out.println("Image generated");
+        imageView.setImage(generatedImg);
+    }
 
+    public Image makeColoredImage(){
+        //BufferedImage bImage = new BufferedImage(600, 600, BufferedImage.TYPE_3BYTE_BGR);
+
+        WritableImage writableImage = new WritableImage(600, 600);
+        PixelWriter pixelWriter = writableImage.getPixelWriter();
+
+        for (int x = 0; x < writableImage.getWidth(); x++){
+            for (int y = 0; y < writableImage.getHeight(); y++){
+                //bImage.setRGB(x, y, (new java.awt.Color(x%255, y%255, (x+y)%255)).getRGB());
+
+                pixelWriter.setArgb(x, y, (new java.awt.Color(x%255, y%255, (x+y)%255)).getRGB());
+            }
+        }
+        return writableImage;
+    }
 }

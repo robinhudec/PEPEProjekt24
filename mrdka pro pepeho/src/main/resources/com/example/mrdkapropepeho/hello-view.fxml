@@ -75,7 +75,7 @@
                </VBox.margin>
             </GridPane>
             <TextArea fx:id="outputTextField" prefHeight="200.0" prefWidth="200.0" />
-             <Button mnemonicParsing="false" onAction="#handleGenerateButton" prefHeight="19.0" prefWidth="101.0" text="Generate image" />
+             <Button mnemonicParsing="false" onAction="#generateImage"  prefHeight="19.0" prefWidth="101.0" text="Generate image" />
              <Button fx:id="restoreButton" disable="true" mnemonicParsing="false" onAction="#handleRestoreButton" text="Restore image" />
             <RadioButton fx:id="originalRadio" disable="true" mnemonicParsing="false" onAction="#handleOriginalImageButton" text="Original" textAlignment="JUSTIFY">
                <toggleGroup>
