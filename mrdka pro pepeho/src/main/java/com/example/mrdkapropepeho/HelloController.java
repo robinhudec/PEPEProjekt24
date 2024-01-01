@@ -157,6 +157,7 @@ public class HelloController implements Initializable {
     }
 
     public void generateImage() {
+        handleGenerateButton(); //Tohle jsem pridal ja, aby mi to spravne fungovalo s GUI -R
         Image generatedImg = makeColoredImage();
         //Image OGimage = imageView.getImage();
         //Image img = convertToJavaFXImage(generatedImg);
