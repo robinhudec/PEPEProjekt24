@@ -181,7 +181,6 @@ public class HelloController implements Initializable {
         return writableImage;
     }
 
-    @FXML
     private void handleSaveButton() {
         Image imageToSave = imageView.getImage();
         if (imageToSave != null) {
@@ -212,7 +211,6 @@ public class HelloController implements Initializable {
         }
     }
 
-    @FXML
     private void handleNegative() {
         Image image = imageView.getImage();
         PixelReader pixelReader = image.getPixelReader();
@@ -233,12 +231,10 @@ public class HelloController implements Initializable {
         outputTextField.setText(outputText);
     }
 
-    @FXML
     public void handleCloseButton() {
         imageView.setImage(null);
     }
 
-    @FXML
     private void handlePixelation() {
         int pixelSize = 10;
         Image image = imageView.getImage();
@@ -284,7 +280,6 @@ public class HelloController implements Initializable {
         return (alpha << 24) | (red << 16) | (green << 8) | blue;
     }
 
-    @FXML
     public void handleBlackAndWhite() {
         Image image = imageView.getImage();
         PixelReader pixelReader = image.getPixelReader();
