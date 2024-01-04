@@ -158,6 +158,7 @@ public class HelloController implements Initializable {
     }
 
     public void generateImage() {
+        handleGenerateButton();
         Image generatedImg = makeColoredImage();
         //Image OGimage = imageView.getImage();
         //Image img = convertToJavaFXImage(generatedImg);
