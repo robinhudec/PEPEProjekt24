@@ -19,6 +19,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -26,18 +29,23 @@ public class HelloController implements Initializable {
     @FXML
     private ImageView imageView;
 
+    public Image selectedImage;
     //za pouziti filechooseru nacte vybrany obrazek do imageview a vyipse text do outputTextField
+
     @FXML
     private void handleOpenButton() {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
-            Image image = new Image(selectedFile.toURI().toString());
-            imageView.setImage(image);
+            selectedImage = new Image(selectedFile.toURI().toString());
+            imageView.setImage(selectedImage);
+            outputTextField.setText(outputText);
+            handleGenerateButton();
         }
         assert selectedFile != null;
         outputText += "\nLoaded image " + selectedFile.getName();
-        outputTextField.setText(outputText);
+        System.out.println(selectedFile);
+        deleteTempPic();
     }
 
     @FXML
@@ -92,8 +100,13 @@ public class HelloController implements Initializable {
 
     @FXML
     private void handleRestoreButton() {
+        saveCustomImage();
+        imageView.setImage(selectedImage);
         outputText += "\nOriginal image restored";
         outputTextField.setText(outputText);
+        originalRadio.setSelected(true);
+        originalRadio.setDisable(true);
+        originalRadio.setDisable(true);
     }
 
     @FXML
@@ -104,11 +117,22 @@ public class HelloController implements Initializable {
 
     @FXML
     private void handleOriginalImageButton() {
+        saveCustomImage();
+        imageView.setImage(selectedImage);
+        outputText += "\nOriginal image restored";
+        outputTextField.setText(outputText);
+        originalRadio.setSelected(true);
     }
+
 
     @FXML
     private void handleModifiedImageButton(){
-        System.out.println("Modified");
+        String imagePath = ".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.png";
+
+        // Load the image
+        Image image = new Image("file:" + imagePath);
+        imageView.setImage(image);
+
     }
 
 
@@ -164,6 +188,7 @@ public class HelloController implements Initializable {
         //Image img = convertToJavaFXImage(generatedImg);
         System.out.println("Image generated");
         imageView.setImage(generatedImg);
+        saveCustomImage();
     }
 
     public Image makeColoredImage(){
@@ -232,6 +257,8 @@ public class HelloController implements Initializable {
         imageView.setImage(negativeImage);
         outputText += "\nImage negated";
         outputTextField.setText(outputText);
+        modifiedRadio.setSelected(true);
+        saveCustomImage();
     }
 
     @FXML
@@ -263,9 +290,11 @@ public class HelloController implements Initializable {
         imageView.setImage(pixelatedImage);
         outputText += "\nImage pixelated";
         outputTextField.setText(outputText);
+        modifiedRadio.setSelected(true);
+        saveCustomImage();
     }
 
-    private int getAverageColor(PixelReader pixelReader, int x, int y, int pixelSize, int width, int height) {
+    public int getAverageColor(PixelReader pixelReader, int x, int y, int pixelSize, int width, int height) {
         int red = 0, green = 0, blue = 0, alpha = 0;
         int count = 0;
         for (int i = 0; i < pixelSize && x + i < width; i++) {
@@ -305,6 +334,43 @@ public class HelloController implements Initializable {
         imageView.setImage(blackAndWhiteImage);
         outputText += "\nImage converted to black and white";
         outputTextField.setText(outputText);
+        modifiedRadio.setSelected(true);
+        saveCustomImage();
+    }
+
+    private void saveCustomImage(){
+        Image imageToSave = imageView.getImage();
+        System.out.println(imageToSave);
+
+        File file = new File(".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.png");
+
+        try {
+            BufferedImage bImage = new BufferedImage(
+                    (int) imageToSave.getWidth(),
+                    (int) imageToSave.getHeight(),
+                    BufferedImage.TYPE_INT_ARGB);
+            for (int x = 0; x < bImage.getWidth(); x++) {
+                for (int y = 0; y < bImage.getHeight(); y++) {
+                    bImage.setRGB(x, y, imageToSave.getPixelReader().getArgb(x, y));
+                }
+            }
+            ImageIO.write(bImage, "png", file);
+            outputText += "\nImage saved as: " + file.getName();
+            outputTextField.setText(outputText);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteTempPic(){
+        String filePath = ".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.png";
+        try {
+            Path path = Paths.get(filePath);
+            Files.delete(path);
+            System.out.println("File deleted successfully.");
+        } catch (IOException e) {
+            System.err.println("Error deleting file: " + e.getMessage());
+        }
     }
 }
 
