@@ -1,4 +1,4 @@
-package com.example.mrdkapropepeho;
+package com.example.projekt;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -38,7 +38,7 @@ public class HelloApplication extends Application {
         }
         ArrayToXML converter = new ArrayToXML();
         converter.writeArrayToXml(content);
-        File file = new File(".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.xml");
+        File file = new File(".\\projekt\\src\\main\\resources\\com\\example\\projekt\\temp.xml");
         String stringContent = converter.writeArrayToXml(content).toString();  //do promenne content ulozi vraceny string ve formatu xml ze tridy ArrayToXml
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));

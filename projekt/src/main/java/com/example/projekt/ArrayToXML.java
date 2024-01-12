@@ -1,4 +1,4 @@
-package com.example.mrdkapropepeho;
+package com.example.projekt;
 import javafx.scene.control.Spinner;
 
 import java.io.File;

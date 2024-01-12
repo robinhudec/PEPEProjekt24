@@ -5,6 +5,6 @@ module com.example.mrdkapropepeho {
     requires java.desktop;
 
 
-    opens com.example.mrdkapropepeho to javafx.fxml;
-    exports com.example.mrdkapropepeho;
+    opens com.example.projekt to javafx.fxml;
+    exports com.example.projekt;
 }

@@ -1,4 +1,4 @@
-package com.example.mrdkapropepeho;
+package com.example.projekt;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,7 +44,7 @@ public class editMatrixController implements Initializable {
                 spinnerArray[col][row] = spinner;
             }
         }
-        File path = new File(".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.xml");
+        File path = new File(".\\projekt\\src\\main\\resources\\com\\example\\projekt\\temp.xml");
         try {
             handleLoadMatrix(path);
         } catch (IOException e) {
@@ -145,7 +145,7 @@ public class editMatrixController implements Initializable {
     //obnovil obsah matice
     @FXML
     private void handleOkButton() {
-        File file = new File(".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.xml");
+        File file = new File(".\\projekt\\src\\main\\resources\\com\\example\\projekt\\temp.xml");
         ArrayToXML converter = new ArrayToXML();
         String content = converter.writeArrayToXml(spinnerArray).toString();  //do promenne content ulozi vraceny string ve formatu xml ze tridy ArrayToXml
         try {

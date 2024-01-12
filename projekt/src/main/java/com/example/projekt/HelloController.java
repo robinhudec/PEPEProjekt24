@@ -1,4 +1,4 @@
-package com.example.mrdkapropepeho;
+package com.example.projekt;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -56,7 +56,7 @@ public class HelloController implements Initializable {
     @FXML
     private void handleAbout() {
         Stage aboutStage = new Stage();
-        Label textAboutUs = new Label("nase info nevim presne");
+        Label textAboutUs = new Label("Autoři: Robin Hudec, Jonáš Garec, Martin Dolníček, Marek Babiček");
         StackPane Layout = new StackPane(textAboutUs);
         Scene newScene = new Scene(Layout);
         aboutStage.setMinWidth(300);
@@ -127,7 +127,7 @@ public class HelloController implements Initializable {
 
     @FXML
     private void handleModifiedImageButton(){
-        String imagePath = ".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.png";
+        String imagePath = ".\\projekt\\src\\main\\resources\\com\\example\\projekt\\temp.png";
 
         // Load the image
         Image image = new Image("file:" + imagePath);
@@ -342,7 +342,7 @@ public class HelloController implements Initializable {
         Image imageToSave = imageView.getImage();
         System.out.println(imageToSave);
 
-        File file = new File(".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.png");
+        File file = new File(".\\projekt\\src\\main\\resources\\com\\example\\projekt\\temp.png");
 
         try {
             BufferedImage bImage = new BufferedImage(
@@ -363,7 +363,7 @@ public class HelloController implements Initializable {
     }
 
     public static void deleteTempPic(){
-        String filePath = ".\\mrdka pro pepeho\\src\\main\\resources\\com\\example\\mrdkapropepeho\\temp.png";
+        String filePath = ".\\projekt\\src\\main\\resources\\com\\example\\projekt\\temp.png";
         try {
             Path path = Paths.get(filePath);
             Files.delete(path);

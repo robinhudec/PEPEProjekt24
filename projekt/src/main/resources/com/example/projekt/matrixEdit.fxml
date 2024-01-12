@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Line?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="560.0" prefWidth="607.0" style="-fx-background-color: #303030;"
             stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            fx:controller="com.example.mrdkapropepeho.editMatrixController">
+            fx:controller="com.example.projekt.editMatrixController">
    <children>
       <GridPane fx:id="spinnerPane" layoutX="14.0" layoutY="14.0" prefHeight="396.0" prefWidth="577.0">
       </GridPane>
