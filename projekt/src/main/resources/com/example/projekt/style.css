@@ -1,0 +1,67 @@
+/* Styly pro Button */
+.button {
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+    -fx-background-color: #404040; /* Světle šedá pro pozadí tlačítka */
+    -fx-text-fill: #ffffff; /* Bílý text na tlačítku */
+    -fx-border-width: 0; /* Odebrání ohraničení tlačítka */
+    -fx-background-radius: 8; /* Zaoblení rohů tlačítka */
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #999999; /* Středně světle šedá při najetí myší */
+}
+
+.button:pressed {
+    -fx-background-color: #d0d0d0; /* Tmavě šedá po stisku tlačítka */
+}
+
+/* Styly pro GridPane */
+.grid-pane {
+    -fx-background-color: #fff; /* Bílá pro pozadí GridPane */
+    -fx-border-color: #ccc; /* Šedá pro ohraničení GridPane */
+}
+
+/* Styly pro TextArea */
+.text-area {
+    -fx-font-size: 16px;
+    -fx-padding: 5;
+    -fx-background-color: #fff; /* Bílá pro pozadí TextArea */
+    -fx-border-color: #ccc; /* Šedá pro ohraničení TextArea */
+    -fx-text-fill: #000000; /* Černý text v TextArea */
+}
+
+/* Styly pro RadioButton */
+.radio-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* Bílý text RadioButton */
+}
+
+/* Další prvky podle potřeby */
+
+/* BorderPane pro hlavní rozložení */
+#borderpane {
+    -fx-background-color: #1E1E1E; /* Tmavě šedá pro hlavní pozadí */
+}
+
+/* Contejner pro tlačítka */
+#buttons {
+    -fx-background-color: #FFFFFF; /* Bílá pro pozadí contajneru tlačítek */
+}
+
+/* Všechna tlačítka uvnitř #buttons */
+#buttons .button {
+    -fx-background-color: #404040; /* Světle šedá pro tlačítka uvnitř contajneru */
+    -fx-text-fill: #ffffff; /* Bílý text uvnitř tlačítek */
+    -fx-border-width: 0; /* Odebrání ohraničení tlačítka */
+    -fx-background-radius: 8; /* Zaoblení rohů tlačítka */
+}
+
+#buttons .button:hover {
+    -fx-background-color: #999999; /* Středně světle šedá při najetí myší */
+}
+
+#buttons .button:pressed {
+    -fx-background-color: #d0d0d0; /* Tmavě šedá po stisku tlačítka */
+}
