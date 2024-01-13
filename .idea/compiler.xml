@@ -10,5 +10,8 @@
         <module name="PEPEProjekt" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PepeProjekt" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

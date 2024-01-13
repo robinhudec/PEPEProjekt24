@@ -1,4 +1,4 @@
-module com.example.mrdkapropepeho {
+module com.example.projekt {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.jdom2;
